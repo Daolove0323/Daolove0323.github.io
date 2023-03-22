@@ -1,9 +1,7 @@
 ---
-title: "iOS Programming"
+title: "iOS"
 layout: archive
-permalink: categories/iOS
-author_profile: true
-sidebar_main: true
+permalink: /iOS
 ---
 
 
