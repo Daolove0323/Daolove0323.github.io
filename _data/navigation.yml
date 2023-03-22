@@ -3,9 +3,9 @@ main:
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
 
-  - title: "About"
-    url: /About/
-  - title: "Categories"
-    url: /categories/
   - title: "iOS"
     url: /iOS/
+  - title: "C++"
+    url: /Cpp/
+  - title: "ComputerStructure"
+    url: /ComputerStructure/

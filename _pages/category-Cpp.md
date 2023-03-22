@@ -1,9 +1,9 @@
 ---
-title: "iOS Programming"
+title: "C++ Programming"
 layout: archive
-permalink: /iOS
+permalink: /Cpp
 ---
 
 
-{% assign posts = site.categories.iOS %}
+{% assign posts = site.categories.Cpp%}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
