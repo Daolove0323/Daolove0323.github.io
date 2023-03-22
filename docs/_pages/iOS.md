@@ -1,5 +1,5 @@
 ---
-permalink: /about/
+permalink: /iOS/
 title: "iOS"
 toc: true
 toc_sticky: true
