@@ -2,17 +2,19 @@
 layout: single
 categories:
   - iOS
-title: "iOS 앱은 어떻게 실행되는가?"
+title: 'iOS 앱은 어떻게 실행될까?'
 ---
 
-## iOS 앱은 어떻게 실행되는가?
+## iOS 앱은 어떻게 실행될까?
 <hr/>
 
-C언어 기반 애플리케이션들은 main() 함수로부터 시작된다.    
-이를 엔트리 포인트(Entry Point)라고 하는데, 운영체제가 애플리케이션 내부의 main() 함수를 호출하면 여기에 작성된 코드들이 연쇄적으로 실행되는 방식이다.    
-Objective-C 또한 C를 기반으로 하기에, Ojective-C로 만들어진 iOS 앱 또한 main() 함수로부터 시작된다.    
+C언어 기반 애플리케이션들은 main() 함수로부터 시작된다.
 
-Objective-C 기반의 Xcode 프로젝트를 생성했을 때 main.m 파일에 생성되는 main() 함수는 다음과 같다.    
+이를 엔트리 포인트(Entry Point)라고 하는데, 운영체제가 애플리케이션 내부의 main() 함수를 호출하면 여기에 작성된 코드들이 연쇄적으로 실행되는 방식이다. 
+
+Objective-C 또한 C 기반 언어이기에 Ojective-C로 만들어진 iOS 앱 또한 main() 함수로부터 시작된다.
+
+Objective-C 기반의 Xcode 프로젝트를 생성했을 때 main.m 파일에 생성되는 main() 함수는 다음과 같다. 
 
 ```
 int main(int argc, char * argv[]) {
@@ -24,9 +26,10 @@ int main(int argc, char * argv[]) {
 }
 ```
 
-main() 함수는 운영체제로부터 전달받은 두 값(argc, argv)과 AppDelegate 클래스의 이름을 이용해 UIApplicationMain() 함수를 호출한다.       
-> NSStringFromClass() : 클래스의 이름을 String 으로 반환하는 함수    
-> @autoreleasepool{} : 여기에 저장된 객체들은 release message를 연기했다가 풀이 relaease될 때, 저장된 모든 객체에 release message를 보낸다.    
+main() 함수는 운영체제로부터 전달받은 두 값(argc, argv)과 AppDelegate 클래스의 이름을 이용해 UIApplicationMain() 함수를 호출한다. 
+
+> NSStringFromClass() : 클래스의 이름을 String 으로 반환하는 함수
+> @autoreleasepool{} : 블록 내부의 객체의 release message를 연기했다가 블록이 끝날 때,  release message를 보낸다. 참조 카운트의 감소를 미루
 
 
 ### UIApplicationMain() 함수
