@@ -2,6 +2,8 @@
 layout: single
 categories:
   - iOS
+tags:
+- ios
 title: "iOS 앱은 어떻게 실행될까?"
 comments: true
 
