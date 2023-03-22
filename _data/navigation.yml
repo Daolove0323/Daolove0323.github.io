@@ -2,15 +2,5 @@
 main:
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
-  - title: "categories"
+  - title: "Categories"
     url: /categories/
-  - title: "Profile"
-    url: /Profile/
-  - title: "iOS"
-    url: /iOS/
-  - title: "C++"
-    url: /Cpp/
-  - title: "Computer Structure"
-    url: /ComputerStructure/
-  - title: "Algorithm"
-    url: /Alogorithm/

@@ -1,6 +1,6 @@
 ---
-permalink: /iOS/
-title: "iOS"
+permalink: /Categories/
+title: "Categories"
 toc: true
 toc_sticky: true
 toc_label: "MYSELF"
