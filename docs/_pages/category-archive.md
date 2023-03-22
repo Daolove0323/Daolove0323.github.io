@@ -1,6 +1,6 @@
 ---
-title: "Posts by Category"
+title: "iOS"
 layout: categories
-permalink: /categories/
+permalink: /iOS/
 author_profile: true
 ---

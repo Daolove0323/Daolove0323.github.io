@@ -2,7 +2,7 @@
 layout: single
 categories:
   - iOS
-title: 'iOS 앱은 어떻게 실행될까?'
+title: "iOS 앱은 어떻게 실행될까?"
 comments: true
 
 ---

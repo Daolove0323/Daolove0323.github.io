@@ -3,12 +3,12 @@ main:
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   - title: "Profile"
-    url: /about/
+    url: /Profile/
   - title: "iOS"
-    url: /about/
+    url: /iOS/
   - title: "C++"
-    url: /about/
+    url: /Cpp/
   - title: "Computer Structure"
-    url: /about/
+    url: /ComputerStructure/
   - title: "Algorithm"
-    url: /about/
+    url: /Alogorithm/
