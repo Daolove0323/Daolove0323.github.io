@@ -1,7 +1,7 @@
 ---
 title: "Computer Structure"
 layout: archive
-permalink: /ComputerStructure
+permalink: /ComputerStructure/
 ---
 
 

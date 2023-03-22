@@ -1,7 +1,7 @@
 ---
 title: "iOS Programming"
 layout: archive
-permalink: /iOS
+permalink: /iOS/
 ---
 
 

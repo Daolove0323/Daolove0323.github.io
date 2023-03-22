@@ -1,7 +1,7 @@
 ---
 title: "C++ Programming"
 layout: archive
-permalink: /Cpp
+permalink: /Cpp/
 ---
 
 
