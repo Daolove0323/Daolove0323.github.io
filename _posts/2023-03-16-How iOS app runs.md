@@ -33,13 +33,16 @@ int main(int argc, char * argv[]) {
 main() 함수는 운영체제로부터 전달받은 두 값(argc, argv)과 AppDelegate 클래스의 이름을 이용해 UIApplicationMain() 함수를 호출한다. 
 
 > NSStringFromClass() : 클래스의 이름을 String 으로 반환하는 함수
-> @autoreleasepool{} : 블록 내부의 객체의 release message를 연기했다가 블록이 끝날 때,  release message를 보낸다. 참조 카운트의 감소를 미루
+>
+> @autoreleasepool{} : 블록 내부의 객체들의 참조 카운트 감소를 미루어 해제를 연기했다가 블록이 끝날 때 모두 해제한다.
+
 
 
 ### UIApplicationMain() 함수
+
 <hr/>
 
-UIApplicationMain() 함수는 iOS 앱의 엔트리 포인트라고 할 수 있을 정도로 매우 중요하며, 함수의 선언은 다음과 같다. (Objective-C, Swift)    
+UIApplicationMain() 함수는 iOS 앱의 엔트리 포인트라고 할 수 있을 정도로 매우 중요하며, 함수의 선언은 다음과 같다. (아래는 각각 Objective-C, Swift 코드)    
 ```
 int UIApplicationMain(int argc, char * _Nullable *argv, NSString *principalClassName, NSString *delegateClassName);
 ```
@@ -52,14 +55,21 @@ func UIApplicationMain(
 ) -> Int32
 ```
 
-UIApplicationMain() 함수의 파라미터는 argc, argv, principalClassName, delegateClassName 이 있다.    
-argc와 argv는 대부분 main() 함수의 인자와 일치하며 각각 argv의 개수, arguments의 변수 리스트이다.    
-principalClassName은 UIApplication 클래스(혹은 서브 클래스)의 이름이다. 만약 이 값이 nil인 경우, UIApplication으로 가정된다.    
-delegateClassName은 인스턴스화될 delegate의 클래스 이름이다.    
-UIApplicationMain() 함수의 반환형은 int이지만, 이 함수는 결코 반환하지 않는다. 홈 버튼을 눌러 앱을 나가더라도, 앱은 백그라운드로 넘어간다.    
+UIApplicationMain() 함수의 파라미터는 argc, argv, principalClassName, delegateClassName 이 있다. 
 
-> 만약 principalClassName에 UIApplication의 서브 클래스를 지정하면 delegateClassName에도 그 서브 클래스가 지정되며, 서브 클래스의 인스턴스는 application-delegate 메시지를 받는다.    
-> 앱의 메인 nib 파일에서 delegate 객체를 로드하는 경우에는 delegateClassName를 nil로 지정한다.    
+argc와 argv는 대부분 main() 함수의 인자와 일치하며 각각 argv의 개수, arguments의 변수 리스트이다.
+
+principalClassName은 UIApplication 클래스(혹은 서브 클래스)의 이름이다. <br>만약 이 값이 nil인 경우, UIApplication으로 가정된다.
+
+delegateClassName은 인스턴스화될 delegate의 클래스 이름이다.
+
+UIApplicationMain() 함수의 반환형은 int이지만, 이 함수는 결코 반환하지 않는다.<br>홈 버튼을 눌러 앱을 나가더라도, 앱은 백그라운드로 넘어간다. 
+
+> 만약 principalClassName에 UIApplication의 서브 클래스를 지정하면 delegateClassName에도 그 서브 클래스가 지정되며, 서브 클래스의 인스턴스는 application-delegate 메시지를 받는다. 
+>
+> 앱의 메인 nib 파일에서 delegate 객체를 로드하는 경우에는 delegateClassName를 nil로 지정한다. 
+
+
 
 
 ### UIApplicationMain() 함수의 역할
@@ -71,28 +81,57 @@ UIApplicationMain() 함수의 반환형은 int이지만, 이 함수는 결코 �
 - 스토리보드 파일로부터 앱의 유저 인터페이스를 읽어들이고, 커스텀 코드를 호출해 앱 생성 초기 설정을 구현한다.
 
 
+
+
 ### UIApplication
 <hr/>
 
-UIApplication 객체는 UIApplicationMain() 함수로부터 만들어지며, 모든 iOS 앱은 단 하나의 UIApplication 인스턴스를 가진다.    
-UIApplication 객체는 사용자 이벤트의 초기 라우팅을 처리하여, 컨트롤 객체(UIControl 클래스의 객체)로부터 전달받은 액션 메시지를 적절한 타겟 오브젝트로 전달한다.  
-UIApplication 객체는 open windows(UIWindow 객체)를 유지함으로써, 앱의 UIView 객체를 다시 불러올 수 있다.
-UIApplication class는 UIApplicationDelegate 프로토콜을 준수하고 프로토콜의 특정 메서드를 반드시 실행하는 delegate를 정의한다. 그리고 그 UIApplication 객체는 그 delegate에게 적절하게 대응할 수 있도록 중요한 runtime events(앱 실행, 메모리 부족 경고, 앱 종료)를 전달한다.    
-앱들은 서로 리소스(이미지 파일, 이메일)를 특정 메서드를 통해 협력적으로 관리한다.    
-예를 들면 앱은 이 메서드에 이메일 주소를 전달하여 메일 앱을 실행하고 메시지를 보여줄 수 있다.
-UIApplication 클래스의 API들은 디바이스의 특정 동작을 다룰 수 있다.    
-(예를 들어 일시적으로 터치 이벤트의 입력을 중단, 푸시 알림 설정, 실행 취소 및 되돌리기,  URL scheme을 처리하기 위해 등록된 앱이 있는지 확인, 백그라운드에서 작업을 마칠 수 있도록 앱의 실행 연장, 로컬 알림 설정 및 해지, 원격 컨트롤 이벤트 수신 조정, 앱 상태 복구)
-대부분의 앱은 UIApplication를 서브 클래스할 필요가 없으며, 대신 시스템과 앱의 상호작용을 관리하기 위해 app delegate를 사용한다.    
-매우 드문 경우 만약 앱이 시스템보다 먼저 데이터 수신을 다뤄야 할 때, UIApplication을 서브 클래스하고 sendEvent: 또는 sendAction:to:from:forEvent: 메서드를 오버라이드 하여 사용 지정 이벤트나 action dispatching 메커니즘을 수행할 수 있다. 가로챈 이벤트를 처리한 후에는 super.sendEvent(event) 메서드를 호출하여 시스템에 다시 돌려줘야 한다. 이벤트를 가로채는 것은 극히 일부여야 하며 가능한 한 피하는 것이 좋다.
-UIApplication 객체는 사실상 앱 그자체이며 커스텀 코드와 앱의 기능이라 생각하는 것들은 다 UIApplication에 포함된 하위 객체이다.    
-앱을 실행하면 초기 구동 과정을 거쳐 앱 프로세스가 메모리에 올라가는데, 이때의 앱 프로세스가 곧 UIApplication 객체라고 봐도 무방하다.   
+UIApplication 객체는 UIApplicationMain() 함수로부터 만들어지며, 모든 iOS 앱은 단 하나의 UIApplication 인스턴스를 가진다. 
+
+UIApplication 객체는 사용자 이벤트의 초기 라우팅을 처리하여, 컨트롤 객체(UIControl 클래스의 객체)로부터 전달받은 액션 메시지를 적절한 타겟 오브젝트로 전달한다. 
+
+UIApplication 객체는 열린 windows(UIWindow 객체)를 유지함으로써, 앱의 UIView 객체를 다시 불러올 수 있다.
+
+UIApplication class는 UIApplicationDelegate 프로토콜을 준수하고 프로토콜의 특정 메서드를 반드시 실행하는 delegate를 정의한다.<br>그리고 그 UIApplication 객체는 그 delegate에게 적절하게 대응할 수 있도록 중요한 runtime events(앱 실행, 메모리 부족 경고, 앱 종료)를 전달한다. 
+
+iOS앱들은 서로 자원(이미지 파일, 이메일 등)을 특정 메서드를 통해 함께 관리한다.<br>예를 들면 어떤 앱은 특정 메서드에 이메일 주소를 전달하여 메일 앱을 실행하고 메시지를 보여줄 수 있다.
+
+UIApplication 클래스의 API들은 디바이스의 특정 동작을 다룰 수 있다.
+
+* 일시적으로 터치 이벤트의 입력을 중단
+* 푸시 알림 설정
+* 실행 취소 및 되돌리기
+* URL scheme을 처리하기 위해 등록된 앱이 있는지 확인
+* 백그라운드에서 작업을 마칠 수 있도록 앱의 실행 연장
+* 로컬 알림 설정 및 해지, 원격 컨트롤 이벤트 수신 조정, 앱 상태 복구)
+
+대부분의 앱에서는 UIApplication를 서브 클래스할 필요가 없으며, 대신 시스템과 앱의 상호작용을 관리하기 위해 app delegate를 사용한다.<br>매우 드문 경우로 앱이 시스템보다 먼저 데이터 수신을 다뤄야 할 때, UIApplication을 서브 클래스하고 sendEvent: 또는 sendAction:to:from:forEvent: 메서드를 오버라이드 하여 사용 지정 이벤트나 action dispatching 메커니즘을 수행할 수 있다.<br>가로챈 이벤트를 처리한 후에는 super.sendEvent(event) 메서드를 호출하여 시스템에 다시 돌려줘야 한다. 이벤트를 가로채는 것은 극히 일부여야 하며 가능한 한 피하는 것이 좋다.
+
+UIApplication 객체는 사실상 앱 그자체이며 우리가 작성하는 커스텀 코드와 앱의 기능이라 생각하는 것들은 다 UIApplication에 포함된 하위 객체이다. <br>
+앱을 실행하면 초기 구동 과정을 거쳐 앱 프로세스가 메모리에 올라가는데, 이때의 앱 프로세스가 곧 UIApplication 객체라고 봐도 무방하다.
+
+
 
 ### AppDelegate
 <hr/>
 
-AppDelegate 또한 UIApplication과 마찬가지로 앱내에서 단 하나의 인스턴스만 생성된다.    
-또한 앱이 처음 만들어질 때 객체가 생성되고 앱이 종료되면 소멸된다. 앱과 생명 주기를 함께 한다.    
-따라서 AppDelegate 객체에 데이터를 저장하면 앱이 종료될 때까지 데이터를 유지할 수 있다.    
+AppDelegate 또한 UIApplication과 마찬가지로 앱내에서 단 하나의 인스턴스만 생성된다. 
+
+또한 앱이 처음 만들어질 때 객체가 생성되고 앱이 종료되면 소멸된다.<br> 즉 앱과 생명 주기를 함께 한다.<br>따라서 AppDelegate 객체에 데이터를 저장하면 앱이 종료될 때까지 데이터를 유지할 수 있다. 
+
+AppDelegate는 UIApplication으로부터 일부 권한을 위임받아 커스텀 코드와 상호작용하는 역할을 담당하고, 이를 통해 우리가 필요한 코드를 구현할 수 있게 한다.
+
+AppDelegate 객체는 커스텀 코드와 연결되는 만큼, 대부분의 경우 커스터마이징하거나 서브 클래싱하여 사용할 수 있도록 오픈되어 있다.
+
+다음과 같은 작업들을 다루기 위해 app deletegate를 사용할 수 있다.
+
+* 앱의 핵심 데이터 구조를 실행
+* 앱의 씬을 설정
+* 메모리 부족, 다운로드 완료 알림과 같은 앱 외부 알림에 반응
+* 앱의 씬, 뷰, 뷰 컨트롤러로 지정되지 않는 앱 그자체를 타겟으로 하는 이벤트에 반응
+* 애플 푸쉬 알림 서비스와 같은 실행 시 요구되는 서비스 설정
+
+
 
 ### @main
 그런데 Swift 기반의 xCode 프로젝트를 생성해도 우리가 위에서 배웠던 main.m 파일을 찾을 수 없다.    
