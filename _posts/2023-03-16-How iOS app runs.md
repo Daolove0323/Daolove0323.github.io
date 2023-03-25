@@ -135,8 +135,44 @@ AppDelegate 객체는 커스텀 코드와 연결되는 만큼, 대부분의 경�
 
 ### @main
 그런데 Swift 기반의 xCode 프로젝트를 생성해도 우리가 위에서 배웠던 main.m 파일을 찾을 수 없다.    
-이는 UIKit 프레임워크 안에 main 함수 구현을 숨겼기 때문인데, 우리는 대신 이를 @main 어노테이션으로 대체한다.    
+이는 UIKit 프레임워크 안에 main 함수 구현을 숨겼기 때문인데, 우리는 대신 이를 @main 어노테이션으로 대체한다.  
 
 이후 이벤트 루프를 만드는 등 실행에 필요한 준비를 진행하고, 실행 완료 직전, AppDelegate의 application(\_:didFinishLaunchingWithOptions:) 메소드를 호출하며 앱은 실행된다.    
 
 수정중..
+
+
+
+![\Image\post\iOSAppLaunchSequence](../Image/post/iOSAppLaunceSequence.png)
+
+
+
+1. The user or the system launches your app, or the system prewarms your app.
+2. The system executes the `main()` function that Xcode provides.
+3. The `main()` function calls [`UIApplicationMain(_:_:_:_:)`](https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain), which creates an instance of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) and of your app delegate.
+4. UIKit loads the default storyboard you specify in your app’s `Info.plist` file, or in the target’s Custom iOS Target Properties tab of Xcode’s project editor; apps that don’t use a default storyboard skip this step.
+5. UIKit calls the [`application(_:willFinishLaunchingWithOptions:)`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623032-application) method in your app delegate.
+6. UIKit performs state restoration, which results in the execution of additional methods in your app delegate and app’s view controllers.
+7. UIKit calls your app delegate’s [`application(_:didFinishLaunchingWithOptions:)`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application) method.
+
+After the launch sequence completes, the system uses your app or scene delegates to display your app’s user interface and to manage its life cycle.
+
+
+
+### [Prepare your app for prewarming](https://developer.apple.com/documentation/uikit/app_and_environment/responding_to_the_launch_of_your_app/about_the_app_launch_sequence#3894431)
+
+In iOS 15 and later, the system may, depending on device conditions, *prewarm* your app — launch nonrunning application processes to reduce the amount of time the user waits before the app is usable. Prewarming executes an app’s launch sequence up until, but not including, when `main()` calls `UIApplicationMain(_:_:_:_:)`. This provides the system with an opportunity to build and cache any low-level structures it requires in anticipation of a full launch.
+
+
+
+Note
+
+For more information about the low-level structures the system requires during app launch, see the WWDC session video [App Startup Time: Past, Present, and Future](https://developer.apple.com/videos/play/wwdc2017/413).
+
+
+
+After the system prewarms your app, its launch sequence remains in a paused state until the app launches and the sequence resumes, or the system removes the prewarmed app from memory to reclaim resources. The system can prewarm your app after a device reboot, and periodically as system conditions allow.
+
+If your app executes code before the call to `UIApplicationMain(_:_:_:_:)`, such as in static initializers like [`load()`](https://developer.apple.com/documentation/objectivec/nsobject/1418815-load), don’t make assumptions about what services and resources are available. For example, keychain items may be unavailable because their data protection policies require an unlocked device and prewarming happens even when the device is in a locked state. If your code is dependent upon access to a specific service or resource, migrate that code to a later part of the launch sequence.
+
+Prewarming an app results in an indeterminate amount of time between when the prewarming phase completes and when the user, or system, fully launches the app. Because of this, use [MetricKit](https://developer.apple.com/documentation/metrickit) to accurately measure user-driven launch and resume times instead of manually signposting various points of the launch sequence.
