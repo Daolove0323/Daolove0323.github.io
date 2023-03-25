@@ -16,7 +16,7 @@ Swift 기반 xCode 프로젝트에서는 Entry Point 역할을 하는 main() 함
 
 이 어노테이션은 Swift 5.3 이상(xCode12)부터 사용된 키워드이고, 이전에는 @UIApplicationMain 키워드를 사용함
 
-```
+```swift
 import UIKit
 
 @main
@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-```
+```swift
 import SwiftUI
 
 @main

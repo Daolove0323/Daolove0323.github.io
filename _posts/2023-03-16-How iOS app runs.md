@@ -20,7 +20,7 @@ Objective-C 또한 C 기반 언어이기에 Ojective-C로 만들어진 iOS 앱 �
 
 Objective-C 기반의 Xcode 프로젝트를 생성했을 때 main.m 파일에 생성되는 main() 함수는 다음과 같다. 
 
-```
+```objective-c
 int main(int argc, char * argv[]) {
     @autoreleasepool {
         // Setup code that might create autoreleased objects goes here.
@@ -43,10 +43,10 @@ main() 함수는 운영체제로부터 전달받은 두 값(argc, argv)과 AppDe
 <hr/>
 
 UIApplicationMain() 함수는 iOS 앱의 엔트리 포인트라고 할 수 있을 정도로 매우 중요하며, 함수의 선언은 다음과 같다. (아래는 각각 Objective-C, Swift 코드)    
-```
+```objective-c
 int UIApplicationMain(int argc, char * _Nullable *argv, NSString *principalClassName, NSString *delegateClassName);
 ```
-```
+```swift
 func UIApplicationMain(
     _ argc: Int32,
     _ argv: UnsafeMutablePointer<UnsafeMutablePointer<CChar>?>,
