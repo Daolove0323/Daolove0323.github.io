@@ -147,7 +147,7 @@ AppDelegate 객체는 커스텀 코드와 연결되는 만큼, 대부분의 경�
 
 
 
-1. The user or the system launches your app, or the system prewarms your app.
+1. The user or the system launches your app, or the system prewarms your app
 2. The system executes the `main()` function that Xcode provides.
 3. The `main()` function calls [`UIApplicationMain(_:_:_:_:)`](https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain), which creates an instance of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) and of your app delegate.
 4. UIKit loads the default storyboard you specify in your app’s `Info.plist` file, or in the target’s Custom iOS Target Properties tab of Xcode’s project editor; apps that don’t use a default storyboard skip this step.
@@ -157,6 +157,22 @@ AppDelegate 객체는 커스텀 코드와 연결되는 만큼, 대부분의 경�
 
 After the launch sequence completes, the system uses your app or scene delegates to display your app’s user interface and to manage its life cycle.
 
+1. 사용자 또는 시스템이 앱을 실행하거나 시스템이 앱을 예열(prewarms)한다.
+
+2. 시스템은 Xcode가 제공하는 main() 함수를 실행한다.
+
+3. main() 함수는 UIApplication 객체와 app delegate 객체를 생성하는 UIApplicationMain() 함수를 호출한다.
+
+4. UIKit은 앱 Info.plist 파일에 지정된 디포트 스토리보드 파일을 로드한다. (앱이 디포트 스토리보드를 사용하지 않으면 이 단계를 건너뛴다.)
+
+5. UIKit이 app delegate의 application(_:willFinishLaunchingWithOptions:) 메서드를 호출한다.
+
+6. UIKit이 상태 복원을 함으로써 app delegate와 view controller의 추가 메서드를 실행한다.
+
+7. UIKit이 app delegate의 application(_:didFinishLaunchingWithOptions:) 메서드를 호출한다.
+
+   위 과정들이 끝나면 시스템은 앱 UI를 보여주고 앱의 라이프사이클을 관리하기 위해 앱 또는 scene delegate를 사용한다.
+
 
 
 ### [Prepare your app for prewarming](https://developer.apple.com/documentation/uikit/app_and_environment/responding_to_the_launch_of_your_app/about_the_app_launch_sequence#3894431)
@@ -165,14 +181,30 @@ In iOS 15 and later, the system may, depending on device conditions, *prewarm* y
 
 
 
-Note
+iOS 15 이상에서, 시스템은 디바이스의 상태에 따라 앱을 prewarm한다.
 
-For more information about the low-level structures the system requires during app launch, see the WWDC session video [App Startup Time: Past, Present, and Future](https://developer.apple.com/videos/play/wwdc2017/413).
+이는 사용자가 앱을 사용하기 위해 기다리는 시간을 줄이기 위해 현재 실행하지 않는 앱을 시작하는 것이다.
+
+prewarming 은 main() 함수가 UIApplicationMain() 함수를 호출하기 직전까지 앱을 실행한다.
+
+이것은 시스템으로 하여금 완전한 실행의 예상에서 요구하는 low-level 구조를 만들고 cache할 수 있게 한다.
+
+
+
+앱의 실행에서 시스템이 요구하는 low-level structures이란? 
+
+wwdc : [App Startup Time: Past, Present, and Future](https://developer.apple.com/videos/play/wwdc2017/413).
 
 
 
 After the system prewarms your app, its launch sequence remains in a paused state until the app launches and the sequence resumes, or the system removes the prewarmed app from memory to reclaim resources. The system can prewarm your app after a device reboot, and periodically as system conditions allow.
 
+시스템이 앱을 준비(prewarm)한 후에는 앱이 실행되기 전까지 launce 절차는 정지된다. 또는 시스템은 리소스를 되찾기 위해 메모리로부터 준비된(prewarmed) 앱을 제거한다. 시스템은, 시스템은 디바이스 재부팅 후 또는 시스템 조건이 허락하는 한 주기적으로 앱을 준비(prewarm)할 수 있다. 
+
 If your app executes code before the call to `UIApplicationMain(_:_:_:_:)`, such as in static initializers like [`load()`](https://developer.apple.com/documentation/objectivec/nsobject/1418815-load), don’t make assumptions about what services and resources are available. For example, keychain items may be unavailable because their data protection policies require an unlocked device and prewarming happens even when the device is in a locked state. If your code is dependent upon access to a specific service or resource, migrate that code to a later part of the launch sequence.
 
+만약 앱이 UIApplicationMain() 함수가 호출되기 전에 앱이 코드를 실행한다면(예로 들면 정적 load() 와 같은 정적 이니셜라이저), 서비스와 자원을 사용할 수 있다고 가정하면 안된다. 예로 키체인 아이템은 사용 할 수 없는데, 그 데이터 보호 정책이 잠금이 풀린 디바이스를 요구하고, 준비는 심지어 디바이스가 잠금상태에서도 일어나기 때문이다. 만약 코드가 특정 서비스나 리소스에 의존적이라면, 코드를 실행 절차의 뒷 부분으로 옮겨야 한다.
+
 Prewarming an app results in an indeterminate amount of time between when the prewarming phase completes and when the user, or system, fully launches the app. Because of this, use [MetricKit](https://developer.apple.com/documentation/metrickit) to accurately measure user-driven launch and resume times instead of manually signposting various points of the launch sequence.
+
+앱을 준비하는 것은 준비 단계가 완료되는 때와 사용자 혹은 시스템이 완전히 앱을 실행하는 때 사이에 쉽게 가늠할 수 없는 시간을 야기한다. 그래서 다양한 시작 시점을 수동으로 표시하는 대신 유저가 사용자가 앱을 실행하고 재개하는 것을 정확하게 측정하기 위해 metricKit를 사용할 수 있다.
