@@ -152,6 +152,10 @@ AppDelegate 객체는 커스텀 코드와 연결되는 만큼, 대부분의 경�
 
 
 
+![iOSAppLaunchSequence]("/assets/image/iOSAppLaunchSequence.png")
+
+
+
 
 
 1. The system executes the `main()` function that Xcode provides.
