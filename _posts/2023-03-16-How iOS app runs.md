@@ -9,7 +9,10 @@ comments: true
 
 ---
 
+
+
 ## iOS 앱은 어떻게 실행될까?
+
 <hr/>
 
 C언어 기반 애플리케이션들은 main() 함수로부터 시작된다.
@@ -143,17 +146,20 @@ AppDelegate 객체는 커스텀 코드와 연결되는 만큼, 대부분의 경�
 
 
 
-![\Image\post\iOSAppLaunchSequence](../Image/post/iOSAppLaunceSequence.png)
+
+
+![image](https://github.com/Daolove0323/Daolove0323.github.io/issues/1.png)
 
 
 
-1. The user or the system launches your app, or the system prewarms your app
-2. The system executes the `main()` function that Xcode provides.
-3. The `main()` function calls [`UIApplicationMain(_:_:_:_:)`](https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain), which creates an instance of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) and of your app delegate.
-4. UIKit loads the default storyboard you specify in your app’s `Info.plist` file, or in the target’s Custom iOS Target Properties tab of Xcode’s project editor; apps that don’t use a default storyboard skip this step.
-5. UIKit calls the [`application(_:willFinishLaunchingWithOptions:)`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623032-application) method in your app delegate.
-6. UIKit performs state restoration, which results in the execution of additional methods in your app delegate and app’s view controllers.
-7. UIKit calls your app delegate’s [`application(_:didFinishLaunchingWithOptions:)`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application) method.
+
+
+1. The system executes the `main()` function that Xcode provides.
+2. The `main()` function calls [`UIApplicationMain(_:_:_:_:)`](https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain), which creates an instance of [`UIApplication`](https://developer.apple.com/documentation/uikit/uiapplication) and of your app delegate.
+3. UIKit loads the default storyboard you specify in your app’s `Info.plist` file, or in the target’s Custom iOS Target Properties tab of Xcode’s project editor; apps that don’t use a default storyboard skip this step.
+4. UIKit calls the [`application(_:willFinishLaunchingWithOptions:)`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623032-application) method in your app delegate.
+5. UIKit performs state restoration, which results in the execution of additional methods in your app delegate and app’s view controllers.
+6. UIKit calls your app delegate’s [`application(_:didFinishLaunchingWithOptions:)`](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application) method.
 
 After the launch sequence completes, the system uses your app or scene delegates to display your app’s user interface and to manage its life cycle.
 
