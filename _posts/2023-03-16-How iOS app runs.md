@@ -146,15 +146,7 @@ AppDelegate 객체는 커스텀 코드와 연결되는 만큼, 대부분의 경�
 
 
 
-
-
-![image](![iOSAppLaunchSequence](https://user-images.githubusercontent.com/90020593/227989650-1e7adc8b-6971-447f-8174-84cea6f06a44.png))
-
-
-
-![iOSAppLaunchSequence]("/assets/image/iOSAppLaunchSequence.png")
-
-
+![iOSAppLaunchSequence](https://user-images.githubusercontent.com/90020593/227992318-6e37f030-bc6e-4941-b236-2a4b28155106.png)
 
 
 
