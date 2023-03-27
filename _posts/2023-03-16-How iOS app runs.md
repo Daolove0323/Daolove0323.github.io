@@ -210,3 +210,65 @@ If your app executes code before the call to `UIApplicationMain(_:_:_:_:)`, such
 Prewarming an app results in an indeterminate amount of time between when the prewarming phase completes and when the user, or system, fully launches the app. Because of this, use [MetricKit](https://developer.apple.com/documentation/metrickit) to accurately measure user-driven launch and resume times instead of manually signposting various points of the launch sequence.
 
 앱을 준비하는 것은 준비 단계가 완료되는 때와 사용자 혹은 시스템이 완전히 앱을 실행하는 때 사이에 쉽게 가늠할 수 없는 시간을 야기한다. 그래서 다양한 시작 시점을 수동으로 표시하는 대신 유저가 사용자가 앱을 실행하고 재개하는 것을 정확하게 측정하기 위해 metricKit를 사용할 수 있다.
+
+
+
+
+
+
+
+<hr/>
+
+<hr/>
+
+
+
+UIKit 프레임워크는 iOS와 tvOS 앱을 만들기 위해 필요한 핵심 객체들을 제공한다. 너는 너의 컨텐츠들을 스크린 위에 보여주고, 그 컨텐츠와 상호작용하고, 운영체제와의 상호작용을 관리하기 위해 이러한 객체들을 사용한다. 앱들의 기본동작들은 UIKit에 의존하고, UIKit은 너의 구체적인 요구 맞춘 동작들을 커스터마이징할 수 있는 다양한 방법을 제공한다.
+
+
+
+Xcode는 너가 만드는 모든 앱의 시작점으로 템플릿 프로젝트를 제공한다. 예로들면 아래 사진은 Xcode에서 싱글뷰 앱 템플릿을 사용해서 만들어진 앱의 구조이다. 템플릿 프로젝트는 최소한의 ui를 제공하고 따라서 너는 너의 프로젝트를 즉시 빌드하고 런할 수 있다. 그리고 디바이스 또는 시뮬레이터에서 결과를 확인할 수 있다.
+
+![8783d1ba-8cc8-4966-afa9-4780a24cc430](https://user-images.githubusercontent.com/90020593/227996282-e8ed1aa0-4e49-4e14-9092-41257e382b13.png)
+
+
+
+너가 앱을 만들때, Xcode는 너의 코드 파일을 컴파일하고 너의 프로젝트의 앱 번들을 생성한다. 앱 번들은 앱과 연관된 코드와 리소스를 포함하는 구조화된 디렉터리이다. 리소스는 너의 코드를 서포트하는 이미지 에셋, 스토리보드 파일, 스트링 파일, 앱 메타 데이터들이 있다. 앱 번들 구조는 중요하지만, Xcode는 너의 리소스가 지금 어디로 가야할지 알고 있기에, 일단 지금은 이것에 대해 걱정하지 말자.
+
+
+
+필요한 리소스
+
+모든 UIKit 앱은 다음 리소스들을 가지도록 요구된다. - 앱 아이콘, 런치 스크린 스토리보드
+
+시스템은 홈버튼, 설정, 그리고 너의 앱을 다른 앱들과 구분해야할 곳 어디든지 너의 앱아이콘을 보여준다. 이것이 여러 곳, 여러 디바이스에서 사용되기 때문에, 너는 Xcode 프로젝트의 Applcon image assset에서다양한 버전의 앱 아이콘을 제공할 수 있다. 너의 앱 아이콘은 홈 스크린에서 사용자가 너의 앱을 빠르게 확인하기 위해서 구분되어야 한다. 그러나 제공해야 하는 다양한 이미지 크기에 맞게 아이콘의 세부정보를 변경할 수 있다.
+
+
+
+런치스크린 스토리보드 파일은 너의 앱 초기 ui를 포함한다. 그리고 이것은 스플래쉬 스크린(앱을 실행하기전에 나오는 화면, 다른말로 런치스크린) 또는 너의 실제 인터페이스의 단순한 버전이 될 수 있다. 사용자가 너의 앱 아이콘을 탭하면, 시스템은 사용자가 앱이 실행중임을 알리기 위해 너의 런치스크린을 즉시보여준다. 런치스크린은 또한 초기화되는 동안 너의 앱의 커버를 제공한다. 앱이 준비가 다 되면, 시스템은 런치스크린을 숨기고 너의 앱의 실제 인터페이스를 보여준다.
+
+
+
+필요한 앱 메타데이터
+
+시스템은 information property list(Info.plist)로 부터 앱 설정과 기능에 대한정보를 불러온다. Xcode는 새로운 프로젝트 템플릿마다 이 파일의 사전 구성된 버전을 제공하지만 너는 이파일의 특정 포인트를 수정할 수도 있다. 예로들면 만약 너의 앱이 특정 하드웨어에 종속적이거나, 또는 특정 시스템 프레임워크를 사용한다면, 너는 이파일에 그 특성에 관련된 정보를 추가할 수 있다.
+
+Info.plist 파일의 흔한 수정으로는 너의 앱의 하드웨어와 소프트웨어 요구사항을 설정하는 것이다. 이 요구사항은 어떻게 너가 시스템에게 너의 앱이 작동하기 위해 무엇이 필요한지 전달하는 방식이다. 예로들면 네비게이션앱은 차례로 방향을 제공하기 위해 gps 하드웨어가 필요할 것이다. 앱스토어는 너의 앱의요구사항에 충족하지 않는 앱이 설치되지 않도록 막는다.
+
+For information about the keys that you can include in your `Info.plist` file, see [Information Property List Key Reference](https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009247).
+
+
+
+UIKit App의 코드 구조
+
+UIKit은 많은 앱의 핵심 객체들을 제공한다. 그정에 어떤것은 시스템과 상호작용하고, 앱의 메인 이벤트 루프를 실행하고, 너의 콘텐츠를 스크린위에 보여준다. 너는 이 많은 객체들을 약간 수정해서도 사용할 수 있다. 어떤 객체를 수정해야 할지, 그 객체들을 언제 수정할지는 너의 앱 실행에 매우 중요하다.
+
+UIKit 앱들의 구조는 Model-View-Controller (MVC) 디자인 패턴 기반이다. 모델 객체는 앱의 데이터와 비지니스 로직을 관리한다. 뷰 객체는 너의 데이터의 시작적 표현을 제공하고, 컨트롤러 객체는 적절한 때에 모델 객체와 뷰 객체 사이에 데이터를 전달하는 다리같은 역할을 한다. 아래 그림은 전형적인 UIKit 앱 구조이다. 너는 너의 앱의 데이터 구조를 표시하기 위해 모델 객체를 제공한다. UIKit은 많은 view 객체를 제공한다. 비록 너가 필요하다면 커스템 뷰를 정의 할수 있음에도 불구하고. 너의 데이터 객체와 UIKit 뷰들 사이의 데이터 교환을 조정하는것은 거의 뷰 컨트롤러와 앱 딜리게이트 객체이다. 
+
+![ff7aa08f-4857-44ce-88d5-7dacbef84509](https://user-images.githubusercontent.com/90020593/228003437-3690cf7a-6961-4d54-8669-6979f1061ed8.png)
+
+
+
+UIKit과 Foundation 프레임워크는 너의 앱의 모델 객체를 정의하기 위해 사용하는 다양한 기본타입들을 제공한다. UIKIt은 디스크 기반 파일에 속한 데이터 구조를 조직화하기 위한 UIDocument 객체를 제공한다. Foundation 프레임워크는 문자열, 수, 배열 그리고 다른 데이터 타입들을 보여주는 기본적인 객체들을 정의한다. Swift Standard Library는 Foundation 프레임워크에서 사용가능한 많은 같은 타입들을 제공한다.
+
+UIKit은 너의 앱의 뷰 레이어와 컨트롤러의 많은 객체들을 제공한다. 특히 UIKit은 UIView 클래스를 정의하는데, 이는 보통 너의 컨텐츠를 스크린에 표시하는 역할을 맡는다. 너는 또한 Metal 또는 다른 시스템 프레임워크를 사용하여 직접 컨텐츠를 렌더링할 수도 있다. UIAllication 객체는 너의 앱의 메인 이벤트 루프를 실행하고 너의 앱의 전반적인 라이프사이클을 관리한다.
