@@ -148,7 +148,7 @@ AppDelegate 객체는 커스텀 코드와 연결되는 만큼, 대부분의 경�
 
 
 
-![image](https://github.com/Daolove0323/Daolove0323.github.io/issues/1.png)
+![image](![iOSAppLaunchSequence](https://user-images.githubusercontent.com/90020593/227989650-1e7adc8b-6971-447f-8174-84cea6f06a44.png))
 
 
 
