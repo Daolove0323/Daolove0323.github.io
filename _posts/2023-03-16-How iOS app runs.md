@@ -23,7 +23,7 @@ Objective-C 또한 C 기반 언어이기에 Ojective-C로 만들어진 iOS 앱 �
 
 Objective-C 기반의 Xcode 프로젝트를 생성했을 때 main.m 파일에 생성되는 main() 함수는 다음과 같다. 
 
-```objective-c
+```
 int main(int argc, char * argv[]) {
     @autoreleasepool {
         // Setup code that might create autoreleased objects goes here.
