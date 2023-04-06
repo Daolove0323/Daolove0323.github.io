@@ -1,9 +1,9 @@
 ---
 layout: single
 categories:
-  - DescreteMathematics
-tags:
 - DescreteMathematics
+tags:
+- ios
 title: "논리와 명제"
 comments: true
 ---
