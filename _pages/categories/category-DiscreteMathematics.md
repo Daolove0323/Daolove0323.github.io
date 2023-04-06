@@ -1,5 +1,5 @@
 ---
-title: "Mathematics"
+title: "DiscreteMathematics"
 layout: archive
 permalink: /DiscreteMathematics/
 ---

@@ -1,9 +1,9 @@
 ---
 layout: single
 categories:
-- DescreteMathematics
+- DiscreteMathematics
 tags:
-- DescreteMathematics
+- DiscreteMathematics
 title: "논리와 명제"
 comments: true
 ---
