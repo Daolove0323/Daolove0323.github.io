@@ -1,9 +1,9 @@
 ---
 title: "Mathematics"
 layout: archive
-permalink: /Mathematics/
+permalink: /DiscreteMathematics/
 ---
 
 
-{% assign posts = site.categories.Mathematics %}
+{% assign posts = site.categories.DiscreteMathematics %}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
