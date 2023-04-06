@@ -123,7 +123,7 @@ P, Q의 배타적 논리합은 P ⊕ Q라고 표기하며, P Exclusive OR Q 또�
 
 조건(Conditional) : 임의의 두 명제 P, Q에 대해 P가 Q를 함축할 때,  P → Q라고 표기하며, 'If P, then Q' 또는 'P이면 Q이다'라고 읽는다. 이는 아래 표현과 동치이다.
 
- '-' P는 Q를 함축한다. (P implies Q)
+ \' P는 Q를 함축한다. (P implies Q)
 
 
 
