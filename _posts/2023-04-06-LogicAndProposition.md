@@ -3,7 +3,7 @@ layout: single
 categories:
 - DescreteMathematics
 tags:
-- ios
+- DescreteMathematics
 title: "논리와 명제"
 comments: true
 ---
@@ -258,6 +258,8 @@ P, Q의 배타적 논리합은 P ⊕ Q라고 표기하며, P Exclusive OR Q 또�
 
 ### 술어 논리
 
+<hr/>
+
 위에서 설명한 것처럼 명제는 참과 거짓을 명확하게 구분할 수 있어야 한다.
 
 그런데 명제 중에서도 x + 5 > 10 와 같이 변수가 포함된 명제가 있다.
@@ -279,6 +281,8 @@ P, Q의 배타적 논리합은 P ⊕ Q라고 표기하며, P Exclusive OR Q 또�
 
 
 ### 한정자
+
+<hr/>
 
 술어 논리에서 변수에 대한 논의 영역의 범위는 한정자(Quantifier)를 통해 정의한다.
 
@@ -311,6 +315,8 @@ P, Q의 배타적 논리합은 P ⊕ Q라고 표기하며, P Exclusive OR Q 또�
 
 
 ### 참고 자료
+
+<hr/>
 
  -김대수, '4차 산업혁명 시대의 이산수학', 생능출판
 
