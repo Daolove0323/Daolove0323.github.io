@@ -310,6 +310,6 @@ P, Q의 배타적 논리합은 `P ⊕ Q`라고 표기하며, `P Exclusive OR Q` 
 
 <hr/>
 
- -김대수, '4차 산업혁명 시대의 이산수학', 생능출판
+ \- 김대수, '4차 산업혁명 시대의 이산수학', 생능출판
 
- -위키백과(https://en.wikipedia.org/wiki)
+ \- 위키백과(https://en.wikipedia.org/wiki)
