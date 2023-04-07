@@ -53,7 +53,7 @@ comments: true
 |        조건(Conditional)         |   →   |    If/then     |
 |      쌍방 조건(Biconditional)      |   ↔   | If and only if |
 
-<br><hr/>
+<br> <hr/>
 
 부정(Negation) :  임의의 명제 P가 주어졌을 때, 그 명제에 대한 부정은 명제 P의 반대되는 진릿값을 가진다.
 
