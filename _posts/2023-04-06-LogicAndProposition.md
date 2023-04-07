@@ -53,7 +53,7 @@ comments: true
 |        조건(Conditional)         |   →   |    If/then     |
 |      쌍방 조건(Biconditional)      |   ↔   | If and only if |
 
-<br>
+<br><hr/>
 
 부정(Negation) :  임의의 명제 P가 주어졌을 때, 그 명제에 대한 부정은 명제 P의 반대되는 진릿값을 가진다.
 
@@ -65,6 +65,8 @@ P의 부정은 ~P라고 표기하며, NOT P 또는 'P가 아니다'라고 읽는
 |  F   |  T   |
 
 <br>
+
+<hr/>
 
 논리곱(conjunction) : 임의의 두 명제 P, Q가 AND로 연결되어 있을 때, 두 명제의 논리곱은 두 명제가 모두 참인 경우에만 참의 진릿값을 가지고, 그렇지 않으면 거짓의 진릿값을 가진다.
 
@@ -79,6 +81,8 @@ P, Q의 논리곱은 P ∧ Q라고 표기하며, P AND Q 또는 'P 그리고 Q'�
 
 <br>
 
+<hr/>
+
 논리합(Disjunction) : 임의의 두 명제 P, Q가 OR로 연결되어 있을 때, 두 명제의 논리합은 두 명제가 모두 거짓인 경우에만 거짓의 진릿값을 가지고, 그렇지 않으면 참의 진릿값을 가진다.
 
 P, Q의 논리합은 P ∨ Q라고 표기하며, P OR Q 또는 'P 또는 Q'라고 읽는다.
@@ -92,6 +96,8 @@ P, Q의 논리합은 P ∨ Q라고 표기하며, P OR Q 또는 'P 또는 Q'라�
 
 <br>
 
+<hr/>
+
 배타적 논리합(Exclusive OR) : 임의의 두 명제 P, Q가 XOR로 연결되어 있을 때, 두 명제의 배타적 논리합은 각각의 두 명제의 진릿값이 같은 경우 참의 진릿값을 가지고, 다른 경우 거짓의 진릿값을 가진다.
 
 P, Q의 배타적 논리합은 P ⊕ Q라고 표기하며, P Exclusive OR Q 또는 P XOR Q라고 읽는다.
@@ -104,6 +110,8 @@ P, Q의 배타적 논리합은 P ⊕ Q라고 표기하며, P Exclusive OR Q 또�
 |  F   |  F   |   F   |
 
 <br>
+
+<hr/>
 
 조건(Conditional) : 임의의 두 명제 P, Q에 대해 P 이면 Q 일 때,  P → Q라고 표기하며, 'If P, then Q' 또는 'P 이면 Q이다'라고 읽는다. 이는 아래 표현과 동치이다.
 
@@ -126,6 +134,8 @@ P, Q의 배타적 논리합은 P ⊕ Q라고 표기하며, P Exclusive OR Q 또�
 
 <br>
 
+<hr/>
+
 쌍방 조건(Biconditional) - 임의의 두 명제 P, Q에 대해 P 이면 Q이고 Q 이면 P 일 때, P ↔ Q라고 표기하며, 'If and only if A, Q' 또는 'P 이면 Q이고 Q 이면 P이다'라고 읽는다. 이는 아래 표현과 동치이다.
 
  \- P는 Q의 필요충분조건이다. (P is necessary and sufficient for Q)
@@ -142,6 +152,8 @@ P, Q의 배타적 논리합은 P ⊕ Q라고 표기하며, P Exclusive OR Q 또�
 | F    | F    | F     |
 
 <br>
+
+<hr/>
 
 합성 명제를 구성할 때 여러 논리 연산자가 사용될 수 있으며, 이때 연산자 우선순위는 다음과 같다.
 
