@@ -56,7 +56,7 @@ The top-level code in a Swift source file consists of zero or more statements, d
 
 There are two kinds of top-level code: top-level declarations and executable top-level code. Top-level declarations consist of only declarations, and are allowed in all Swift source files. Executable top-level code contains statements and expressions, not just declarations, and is allowed only as the top-level entry point for the program.
 
-The Swift code you compile to make an executable can contain at most one of the following approaches to mark the top-level entry point, regardless of how the code is organized into files and modules: the `main` attribute, the `NSApplicationMain` attribute, the `UIApplicationMain` attribute, a `main.swift` file, or a file that contains top-level executable code.
+The Swift code you compile to make an executable can contain at most one of the following approaches to mark the top-level entry point, regardless of how the code is organized into files and modules: the `main` attribute, the `NSApplicationMain` attribute, the `UIApplicationMain` attribute, a `main.swift` file, or a file that contains top-level executable code..
 
 스위프트 파일에서 탑-레벨. 코드는 0개. 이상의 statements, 선언, 표현으로 구성된다. 기본적으로 탑-레벨 소스파일에 선언된 변수, 상수 그리고 그외 선언들은 동일 모듈의 일부인 모든 소스 파일에서 접근할 수 있다. You can override this default behavior by marking the declaration with an access-level modifier, as described in [Access Control Levels](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/declarations#Access-Control-Levels).
 
