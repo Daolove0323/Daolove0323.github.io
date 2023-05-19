@@ -62,7 +62,7 @@ The Swift code you compile to make an executable can contain at most one of the 
 
 탑레벨 코드에는 탑레벨 선언과 실행가능 탑레벨 코드 두종류가 있다. 탑레벨 코드는 선언으로만 구성되며 모든 스위프트 파일에서 허락되어짐. 실행가능한 탑레벨 코드는 스테이트먼트와 표현, 선언 포함, 그리고 프로그램의 탑레벨 엔트리포인터에서만 허락되어짐.
 
-실행파일을 만들기위해 너가 컴파일하는 스위프트코드는 어떻게 코드가 파일과 모듈로 조직화되어졌는지와 관계없이 탑레벨인트리 포인트를 표시하기 위에 다음중에 하나를 포함할 수 있다. 메인 어트리뷰트, NSApplicationMain 어트리뷰트, UIApplicationMain 어트리뷰트, main.swift 파일, 실행가능한 탑레벨 코드를 포함하는 파일.
+실행파일을 만들기위해 너가 컴파일하는 스위프트코드는 어떻게 코드가 파일과 모듈로 조직화되어졌는지와 관계없이 탑레벨인트리 포인트를 표시하기 위에 다음중에 하나를 포함할 수 있다. 메인 어트리뷰트, NSApplicationMain 어트리뷰트, UIApplicationMain 어트리뷰트, main.swift 파일, 실행가능한 탑레벨 코드를 포함하는 파일..
 
 objective-c에서 swift로 언어가 넘어오면서 main.swift에서 main 함수를 관리함과 동시에 uikit 프레임워크에 이 main함수를 넣고 관리하고 우리는 @uiapplicationmain 키워드를 사용
 
