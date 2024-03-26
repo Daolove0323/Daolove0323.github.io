@@ -1,9 +1,9 @@
 ---
-title: "DiscreteMathematics"
+title: "Spring"
 layout: archive
-permalink: /DiscreteMathematics/
+permalink: /Spring/
 ---
 
 
-{% assign posts = site.categories.DiscreteMathematics %}
+{% assign posts = site.categories.Spring%}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}

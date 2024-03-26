@@ -1,9 +1,9 @@
 ---
-title: "C++ Programming"
+title: "MySQL"
 layout: archive
-permalink: /Cpp/
+permalink: /MySQL/
 ---
 
 
-{% assign posts = site.categories.Cpp%}
+{% assign posts = site.categories.MySQL%}
 {% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
