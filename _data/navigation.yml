@@ -5,11 +5,11 @@ main:
 
   - title: "iOS"
     url: /iOS/
-  - title: "C++"
-    url: /Cpp/
-  - title: "Computer Structure"
-    url: /ComputerStructure/
-  - title: "Discrete Mathematics"
-    url: /DiscreteMathematics/
-  - title: "Linux"
-    url: /Linux/
+  - title: "Algorithm"
+    url: /Algorithm/
+  - title: "Spring"
+    url: /Spring/
+  - title: "MySQL"
+    url: /MySQL/
+  - title: "Economics"
+    url: /MicroEconomics/
