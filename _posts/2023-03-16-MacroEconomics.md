@@ -4,7 +4,7 @@ categories:
   - iOS
 tags:
 - ios
-title: "iOS 앱은 어떻게 실행될까?"
+title: "미시경제와 거시경제"
 comments: true
 
 ---
